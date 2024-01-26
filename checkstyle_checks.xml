@@ -150,6 +150,7 @@
              value="Interface type name ''{0}'' must match pattern ''{1}''."/>
     </module>
     <module name="NoFinalizer"/>
+    <module name="NoWhitespaceBeforeCaseDefaultColon"/>
     <module name="MethodParamPad">
       <property name="tokens"
                value="CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF,
