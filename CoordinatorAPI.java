@@ -11,4 +11,7 @@ public interface CoordinatorAPI{
 	//send and receive requests from DataEngineAPI
 	void sendRequest(DataEngineAPI data);
 	void retrieveRequest(DataEngineAPI data);
+
+	//checks that returned computation is valid
+	void validateReturn(DataEngineAPI data);
 }
