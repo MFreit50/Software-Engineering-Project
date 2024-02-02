@@ -32,17 +32,18 @@ public class Prototype{
         engine.sendData(OutputSource outputSource);
     }
 
-    public void testCoordinatorAPI(testCoordinatorAPI engine){
-        engine.sendRequest(data);
-        engine.retrieveRequest(data);
+    public void testCoordinatorAPI(TestCoordinatorAPI engine){
+        //send and receive requests from UserEngineAPI
+        engine.sendRequest(UserEngineAPI data);
+        engine.retrieveRequest(UserEngineAPI data);
 
         //send and receive requests from ComputeEngineAPI
-        engine.sendRequest(data);
-        engine.retrieveRequest(data);
+        engine.sendRequest(ComputeEngineAPI data);
+        engine.retrieveRequest(ComputeEngineAPI data);
 
         //send and receive requests from DataEngineAPI
-        engine.sendRequest(data);
-        engine.retrieveRequest(data);
+        engine.sendRequest(DataEngineAPI data);
+        engine.retrieveRequest(DataEngineAPI data);
     }
 
 }
