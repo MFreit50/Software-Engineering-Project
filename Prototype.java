@@ -24,6 +24,27 @@ public class Prototype{
         //compute and get return
     }
 
+    public void testComputeEngineAPI(ComputeEngineAPI engine){
+        engine.initialize(key);
+
+        engine.readData(InputSource inputSource);
+
+        engine.sendData(OutputSource outputSource);
+    }
+
+    public void testCoordinatorAPI(testCoordinatorAPI engine){
+        engine.sendRequest(data);
+        engine.retrieveRequest(data);
+
+        //send and receive requests from ComputeEngineAPI
+        engine.sendRequest(data);
+        engine.retrieveRequest(data);
+
+        //send and receive requests from DataEngineAPI
+        engine.sendRequest(data);
+        engine.retrieveRequest(data);
+    }
+
 }
 
 //Prototype
