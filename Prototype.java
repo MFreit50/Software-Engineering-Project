@@ -36,16 +36,8 @@ public class Prototype{
     }
 
     public void testCoordinatorAPI(TestCoordinatorAPI engine) {
-        //send and receive requests from UserEngineAPI
-        engine.sendRequest();
-        engine.retrieveRequest();
-
-        //send and receive requests from ComputeEngineAPI
-        engine.sendRequest();
-        engine.retrieveRequest();
-
-        //send and receive requests from DataEngineAPI
-        engine.sendRequest();
+        //send and receive requests to API (method overloading)
+        engine.sendRequest(data);
         engine.retrieveRequest(data);
     }
 
