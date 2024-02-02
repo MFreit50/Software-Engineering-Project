@@ -3,7 +3,7 @@ public interface ComputeEngineAPI{
 	void initialize(Key key);
 
 	// Perform computation
-	void computeProcess(Key key);
+	private void computeProcess(Key key);
 
 	// Read data from the input source
 	void readData(InputSource inputSource);
