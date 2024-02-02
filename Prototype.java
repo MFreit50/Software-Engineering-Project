@@ -25,12 +25,14 @@ public class Prototype{
     }
 
     public void testComputeEngineAPI(ComputeEngineAPI engine) {
-
+        //initializes compute engine
         engine.initialize(Key key);
 
+        //compute engine retrieves data
         engine.readData(InputSource inputSource);
 
-        engine.sendData(OutputSource outputSource);
+        //compute engine sends data
+        engine.writeData(OutputSource outputSource);
     }
 
     public void testCoordinatorAPI(TestCoordinatorAPI engine) {
