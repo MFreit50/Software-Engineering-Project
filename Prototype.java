@@ -25,8 +25,6 @@ public class Prototype{
     }
 
     public void testComputeEngineAPI(ComputeEngineAPI engine){
-        
-        engine.initialize(Key key);
 
         engine.readData(InputSource inputSource);
 
