@@ -10,4 +10,10 @@ public interface UserEngineAPI{
 
     // Method to set default delimiters
     void setDefaultDelimiters();
+
+    // Method to generate a key 
+    String generateKey();
+
+    // Method to kick off the job and return success/failure status
+    JobStatus.JobStatusCheck checkJobStatus();
 }
