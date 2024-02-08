@@ -3,9 +3,6 @@ public interface DataEngineAPI {
     void readData(InputSource inputSource);
 
     // Method for writing data to the output destination
-    void writeData(OutputDestination outputDestination, String data);
-
-    //checks that returned computation is valid
-    void validateReturn(DataEngineAPI data);
+     WriteData.WriteDataStatus writeData(OutputDestination outputDestination, String data);
 
 }
