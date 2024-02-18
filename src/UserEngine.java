@@ -1,14 +1,14 @@
 
 public class UserEngine implements UserEngineAPI{
-    private InputSource inputSource;
-    private OutputDestination outputDestination;
+    private String inputSource;
+    private String outputDestination;
     private Character delimiter;
 
-    public void setInputSource(InputSource inputSource){
+    public void setInputSource(String inputSource){
         this.inputSource = inputSource;
     }
 
-    public void setOutputDestination(OutputDestination outputDestination){
+    public void setOutputDestination(String outputDestination){
         this.outputDestination = outputDestination;
     }
 
@@ -16,8 +16,8 @@ public class UserEngine implements UserEngineAPI{
         this.delimiter = delimiter;
     }
 
-    public void setDefaultDelimiters() {
-  
+    public void setDefaultDelimiter() {
+        this.delimiter = ';';
     }
 
     public String generateKey() {
@@ -27,5 +27,4 @@ public class UserEngine implements UserEngineAPI{
     public JobStatus.JobStatusCheck checkJobStatus() {
         return JobStatus.JobStatusCheck.FAILURE; // Default failure status
     }
-	
 }
