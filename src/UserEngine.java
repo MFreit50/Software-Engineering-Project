@@ -2,7 +2,7 @@
 public class UserEngine implements UserEngineAPI{
     private String inputSource;
     private String outputDestination;
-    private Character delimiter;
+    private String delimiter;
 
     //Mutator methods
     public void setInputSource(String inputSource){
@@ -11,11 +11,11 @@ public class UserEngine implements UserEngineAPI{
     public void setOutputDestination(String outputDestination){
         this.outputDestination = outputDestination;
     }
-    public void setDelimiter(Character delimiter) {
+    public void setDelimiter(String delimiter) {
         this.delimiter = delimiter;
     }
     public void setDefaultDelimiter() {
-        this.delimiter = ';';
+        this.delimiter = ";";
     }
 
     //Accessor methods
@@ -25,7 +25,7 @@ public class UserEngine implements UserEngineAPI{
     public String getOutputDestination(){
         return outputDestination;
     }
-    public Character getDelimiter(){
+    public String getDelimiter(){
         return delimiter;
     }
 
