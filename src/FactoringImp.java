@@ -2,15 +2,15 @@ import java.util.LinkedList;
 import java.util.List;
 public class FactoringImp {
     private String delimiter = ";";
-    public static List<String> findFactors(int [] nums){
+    public List<String> findFactors(int [] nums){
         List<String> factors = new LinkedList<>();
         for(int i : nums) {
-            String s = "";
-            factors.add(findFactorsHelper(i,s));
+            factors.add(findFactorsHelper(i));
+            factors.add(delimiter);
         }
         return factors;
     }
-    private static String findFactorsHelper(int num, String delimeter) {
+    private String findFactorsHelper(int num) {
         StringBuilder factorString = new StringBuilder();
         factorString.append(num).append("=");
         for (int i = 1; i<=num; ++i){
@@ -18,10 +18,11 @@ public class FactoringImp {
                 factorString.append(i).append(",");
             }
         }
-        factorString.append(delimeter);
+        factorString.deleteCharAt(factorString.length() - 1).append(delimiter);
         return factorString.toString();
     }
     public  void setDelimiter(String delim) {
         delimiter = delim;
     }
 }
+
