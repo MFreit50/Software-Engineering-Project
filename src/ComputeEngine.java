@@ -1,6 +1,6 @@
 public class ComputeEngine implements ComputeEngineAPI{
-    public void computeProcess(Key key){
-
+    public int computeProcess(int value) {
+        return value;
     }
-	
+
 }

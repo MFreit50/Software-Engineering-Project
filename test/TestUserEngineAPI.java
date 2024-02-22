@@ -1,10 +1,39 @@
-import org.mockito.Mockito;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.any;
+import org.junit.jupiter.api.Test;
 
-public class TestUserEngineAPI{
-    public void testUserEngine() throws Exception{
-        UserEngineAPI mockUserEngine = Mockito.mock(UserEngineAPI.class);
-        UserEngineAPI testUserEngine = new UserEngineAPI(mockUserEngine);
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class TestUserEngineAPI {
+    @Test
+    public void testSetInputSource() {
+        UserEngineAPI userEngine = new UserEngine();
+        userEngine.setInputSource("input.txt");
+        assertEquals("input.txt", userEngine.getInputSource());
+    }
+
+    @Test
+    public void testSetOutputDestination() {
+        UserEngineAPI userEngine = new UserEngine();
+        userEngine.setOutputDestination("output.txt");
+        assertEquals("output.txt", userEngine.getOutputDestination());
+    }
+
+    @Test
+    public void testSetDelimiter() {
+        UserEngineAPI userEngine = new UserEngine();
+        userEngine.setDelimiter(",");
+        assertEquals(",", userEngine.getDelimiter());
+    }
+
+    @Test
+    public void testSetDefaultDelimiter() {
+        UserEngineAPI userEngine = new UserEngine();
+        userEngine.setDefaultDelimiter();
+        assertEquals(";", userEngine.getDelimiter());
+    }
+
+    @Test
+    public void testCheckJobStatus() {
+        UserEngineAPI userEngine = new UserEngine();
+        assertEquals(JobStatus.JobStatusCheck.FAILURE, userEngine.checkJobStatus());
     }
 }
