@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryImpOutputConfig implements OutputConfig {
-    private final List<String> OutputData = new ArrayList<>();
+    private final List<String> outputData = new ArrayList<>();
     @Override
     public void writeOutput(List<String> outputData) {
 
