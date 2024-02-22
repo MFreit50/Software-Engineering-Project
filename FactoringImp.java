@@ -5,12 +5,12 @@ public class FactoringImp {
     public List<String> findFactors(int [] nums){
         List<String> factors = new LinkedList<>();
         for(int i : nums) {
-            String s = "";
-            factors.add(findFactorsHelper(i,s));
+            factors.add(findFactorsHelper(i));
+            factors.add(delimiter);
         }
         return factors;
     }
-    private String findFactorsHelper(int num, String delimeter) {
+    private String findFactorsHelper(int num) {
         StringBuilder factorString = new StringBuilder();
         factorString.append(num).append("=");
         for (int i = 1; i<=num; ++i){
@@ -25,3 +25,4 @@ public class FactoringImp {
         delimiter = delim;
     }
 }
+
