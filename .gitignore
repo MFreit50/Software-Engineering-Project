@@ -29,3 +29,7 @@ bin/test/TestComputeEngineAPI.class
 bin/test/TestDataEngineAPI.class
 bin/test/TestUserEngineAPI.class
 bin/main/UserEngineAPI.class
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+Software-Engineering-Project.iml
