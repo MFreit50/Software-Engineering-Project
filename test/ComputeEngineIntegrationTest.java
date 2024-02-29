@@ -1,15 +1,23 @@
-public class ComputeEngineIntegrationTest{
-   public ComputeEngine computeEngine = new ComputeEngine();
-   public TestDataEngineAPI dataEngine = new TestDataEngineAPI();
-   public UserEngine userEngine = new UserEngine();
-   
-   //test input
-   public int[] input = {1,10,25};
-   @Test
-   public initiate(UserEngine userEngine, TestDataEngineAPI dataEngine){
-      userEngine.setInputSource(input);
-      dataEngine.readData(input);
-      dataEngine.writeData();
-      userEngine.checkJobStatus();
-   }
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+public class ComputeEngineIntegrationTest {
+    public ComputeEngine computeEngine = new ComputeEngine();
+    public TestDataEngineAPI dataEngine = new TestDataEngineAPI();
+
+    @Test
+    public void testComputeEngineIntegration() throws IOException {
+        List<Integer> inputData = Arrays.asList(1, 10, 25);
+        InMemoryImpInputConfig inputConfig = new InMemoryImpInputConfig(inputData);
+        InMemoryImpOutputConfig outputConfig = new InMemoryImpOutputConfig();
+
+        for (Integer input : inputData) {
+            computeEngine.computeProcess(input);
+        }
+
+        String outputData = outputConfig.getOutputSource();
+    }
 }

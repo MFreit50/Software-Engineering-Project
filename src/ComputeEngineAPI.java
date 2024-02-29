@@ -1,5 +1,5 @@
 public interface ComputeEngineAPI{
 	// Perform computation
-	void computeProcess(Key key);
+	int computeProcess(int value);
 	 
 }
