@@ -1,13 +1,12 @@
 import java.util.List;
 
 public class FileOutputConfig implements OutputConfig{
-    //Output file path
+
     private final String filePath;
 
     public FileOutputConfig(String filePath) {
         this.filePath = filePath;
     }
-
     public String getFileName() {
         return filePath;
     }

@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class FileInputConfig implements InputConfig{
-    //Input file path
+
     private final String filePath;
 
     public FileInputConfig(String filePath) {
