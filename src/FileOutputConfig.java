@@ -7,7 +7,6 @@ public class FileOutputConfig implements OutputConfig{
     public FileOutputConfig(String filePath) {
         this.filePath = filePath;
     }
-    
     public String getFileName() {
         return filePath;
     }
