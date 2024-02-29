@@ -3,3 +3,29 @@
 
 # Ignore Gradle build output directory
 build
+bin/main/ComputeEngine.class
+bin/main/ComputeEngineAPI.class
+bin/main/Coordination.class
+bin/main/DataEngine.class
+bin/main/DataEngineAPI$EngineStatus.class
+bin/main/DataEngineAPI.class
+bin/main/FactoringImp.class
+bin/main/InputConfig.class
+bin/main/JobStatus$JobStatusCheck.class
+bin/main/JobStatus.class
+bin/main/Key.class
+bin/main/OutputConfig.class
+bin/main/Prototype.class
+bin/main/UserEngine.class
+bin/main/UserRequestAPI.class
+bin/main/WriteData$WriteDataStatus.class
+bin/main/WriteData.class
+bin/test/ComputeEngineIntegrationTest.class
+bin/test/DataEngineTest.class
+bin/test/InMemoryImpDataEngineAPI.class
+bin/test/InMemoryImpInputConfig.class
+bin/test/InMemoryImpOutputConfig.class
+bin/test/TestComputeEngineAPI.class
+bin/test/TestDataEngineAPI.class
+bin/test/TestUserEngineAPI.class
+bin/main/UserEngineAPI.class
