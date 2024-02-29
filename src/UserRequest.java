@@ -23,6 +23,12 @@ public class UserRequest implements UserRequestAPI{
     public OutputConfig getFileOutputPath(){
         return fileOutputPath.getFileName();
     }
+    public InputConfig getFileInputPath(){
+        return fileInputPath;
+    }
+    public OutputConfig getFileOutputPath(){
+        return fileOutputPath;
+    }
     public String getDelimiter(){
         return delimiter;
     }
