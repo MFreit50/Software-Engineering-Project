@@ -7,13 +7,13 @@ import java.util.Scanner;
 import java.util.List;
 
 public class DataEngine implements DataEngineAPI{
-    public String inputSource;
-    public String outputDestination;
+    public String fileInputPath;
+    public String fileOutputPath;
     public int[] numbers = null;
-    public EngineStatus readData(String inputSource){
+    public EngineStatus readData(String fileInputPath){
         try{
             //create File object with user specified path
-            File file = new File(inputSource);
+            File file = new File(fileInputPath);
             Scanner fileScanner = new Scanner(file);
             fileScanner.close();
             //list stores data in the file
@@ -41,9 +41,9 @@ public class DataEngine implements DataEngineAPI{
         return EngineStatus.NO_ERROR;
     }
 
-    public EngineStatus writeData(String outputDestination, List<String> data)throws IOException{
+    public EngineStatus writeData(String fileOutputPath, List<String> data)throws IOException{
         try{
-            File outputFile = new File(outputDestination);
+            File outputFile = new File(fileOutputPath);
             FileWriter fileWriter = new FileWriter(outputFile);
             for(String datum : data){
                 fileWriter.write(datum);
@@ -56,11 +56,11 @@ public class DataEngine implements DataEngineAPI{
         return EngineStatus.NO_ERROR;
     }
 
-    public void setInputSource(String inputSource){
-        this.inputSource = inputSource;
+    public void setInputSource(String fileInputPath){
+        this.fileInputPath = fileInputPath;
     }
-    public void setOutputDestination(String outputDestination){
-        this.outputDestination = outputDestination;
+    public void setOutputDestination(String fileOutputPath){
+        this.fileOutputPath = fileOutputPath;
     }
     public int[] getNumbers(){
         return numbers;
