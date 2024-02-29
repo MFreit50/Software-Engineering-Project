@@ -11,6 +11,18 @@ public class UserRequest implements UserRequestAPI{
     }
 
     //Accessor methods
+    public InputConfig getInputConfig(){
+        return fileInputPath;
+    }
+    public OutputConfig getOutputConfig(){
+        return fileOutputPath;
+    }
+    public InputConfig getFileInputPath(){
+        return fileInputPath.getFileName();
+    }
+    public OutputConfig getFileOutputPath(){
+        return fileOutputPath.getFileName();
+    }
     public InputConfig getFileInputPath(){
         return fileInputPath;
     }
