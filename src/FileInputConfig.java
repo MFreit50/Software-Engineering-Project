@@ -7,7 +7,7 @@ public class FileInputConfig implements InputConfig{
     public FileInputConfig(String filePath) {
         this.filePath = filePath;
     }
-    
+
     public String getFileName() {
         return filePath;
     }
@@ -15,7 +15,7 @@ public class FileInputConfig implements InputConfig{
     public List<Integer> getInputData() {
         return null;
     }
-
+    
     @Override
     public String getInputSource() {
         return null;
