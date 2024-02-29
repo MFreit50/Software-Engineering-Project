@@ -16,7 +16,6 @@ bin/main/JobStatus.class
 bin/main/Key.class
 bin/main/OutputConfig.class
 bin/main/Prototype.class
-bin/main/UserRequest.class
 bin/main/UserRequestAPI.class
 bin/main/WriteData$WriteDataStatus.class
 bin/main/WriteData.class
@@ -28,5 +27,3 @@ bin/test/InMemoryImpOutputConfig.class
 bin/test/TestComputeEngineAPI.class
 bin/test/TestDataEngineAPI.class
 bin/test/TestUserEngineAPI.class
-bin/main/UserEngine.class
-bin/main/UserEngineAPI.class
