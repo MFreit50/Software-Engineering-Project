@@ -17,17 +17,11 @@ public class UserRequest implements UserRequestAPI{
     public OutputConfig getOutputConfig(){
         return fileOutputPath;
     }
-    public InputConfig getFileInputPath(){
+    public String getFileInputPath(){
         return fileInputPath.getFileName();
     }
-    public OutputConfig getFileOutputPath(){
+    public String getFileOutputPath(){
         return fileOutputPath.getFileName();
-    }
-    public InputConfig getFileInputPath(){
-        return fileInputPath;
-    }
-    public OutputConfig getFileOutputPath(){
-        return fileOutputPath;
     }
     public String getDelimiter(){
         return delimiter;
