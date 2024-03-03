@@ -3,4 +3,5 @@ public interface InputConfig {
     List<Integer> getInputData();
     String getInputSource();
     void setInputSource(String inputSource);
+    String getFileName();
 }
