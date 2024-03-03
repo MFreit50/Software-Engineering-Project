@@ -27,15 +27,15 @@ public class TestMultiUser {
 
 	@Test
 	public void compareMultiAndSingleThreaded() throws Exception {
-		int NumThreads = 4;
+		int numThreads = 4;
 		List<TestUser> testUsers = new ArrayList<>();
-		for (int i = 0; i < NumThreads; i++) {
+		for (int i = 0; i < numThreads; i++) {
 			testUsers.add(new TestUser(coordinator));
 		}
 		
 		// Run single threaded
 		String singleThreadFilePrefix = "testMultiUser.compareMultiAndSingleThreaded.test.singleThreadOut.tmp";
-		for (int i = 0; i < NumThreads; i++) {
+		for (int i = 0; i < numThreads; i++) {
 			File singleThreadedOut = 
 					new File(singleThreadFilePrefix + i);
 			singleThreadedOut.deleteOnExit();
@@ -46,7 +46,7 @@ public class TestMultiUser {
 		ExecutorService threadPool = Executors.newCachedThreadPool();
 		List<Future<?>> results = new ArrayList<>();
 		String multiThreadFilePrefix = "testMultiUser.compareMultiAndSingleThreaded.test.multiThreadOut.tmp";
-		for (int i = 0; i < NumThreads; i++) {
+		for (int i = 0; i < numThreads; i++) {
 			File multiThreadedOut = 
 					new File(multiThreadFilePrefix + i);
 			multiThreadedOut.deleteOnExit();
