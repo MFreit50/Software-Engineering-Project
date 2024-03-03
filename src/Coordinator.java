@@ -46,8 +46,6 @@ public class Coordinator {
         if (readStatus != DataEngine.EngineStatus.NO_ERROR) {
             return;
         }
-
-        int[] numbers = dataEngine.getNumbers();
-        dataEngine.writeData(request.getFileOutputPath(), compute.findFactors(numbers));
+        dataEngine.writeData(request.getFileOutputPath(), compute.findFactors(dataEngine.getNumbers()));
 
 }
