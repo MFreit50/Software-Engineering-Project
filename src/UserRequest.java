@@ -11,11 +11,17 @@ public class UserRequest implements UserRequestAPI{
     }
 
     //Accessor methods
-    public InputConfig getFileInputPath(){
+    public InputConfig getInputConfig(){
         return fileInputPath;
     }
-    public OutputConfig getFileOutputPath(){
+    public OutputConfig getOutputConfig(){
         return fileOutputPath;
+    }
+    public String getFileInputPath(){
+        return fileInputPath.getFileName();
+    }
+    public String getFileOutputPath(){
+        return fileOutputPath.getFileName();
     }
     public String getDelimiter(){
         return delimiter;

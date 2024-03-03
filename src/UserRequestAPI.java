@@ -1,9 +1,12 @@
 
 public interface UserRequestAPI{
     //Accessor methods
-    InputConfig getFileInputPath();
-    OutputConfig getFileOutputPath();
-    String getDelimiter();
 
+    InputConfig getInputConfig();
+    OutputConfig getOutputConfig();
+    String getFileInputPath();
+    String getFileOutputPath();
+    String getDelimiter();
+    
     JobStatus.JobStatusCheck checkJobStatus();
 }
