@@ -4,9 +4,9 @@ public interface UserRequestAPI{
 
     InputConfig getInputConfig();
     OutputConfig getOutputConfig();
-    InputConfig getFileInputPath();
-    OutputConfig getFileOutputPath();
+    String getFileInputPath();
+    String getFileOutputPath();
     String getDelimiter();
-
+    
     JobStatus.JobStatusCheck checkJobStatus();
 }
