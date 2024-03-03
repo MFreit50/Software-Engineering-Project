@@ -7,6 +7,6 @@ public interface UserRequestAPI{
     String getFileInputPath();
     String getFileOutputPath();
     String getDelimiter();
-
+    
     JobStatus.JobStatusCheck checkJobStatus();
 }
