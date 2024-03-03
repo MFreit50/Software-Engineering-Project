@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -27,8 +28,6 @@ public class Coordinator {
                 }
             }));
         }
-
-        // Wait for all tasks to complete
         for (Future<?> result : results) {
             try {
                 result.get();
@@ -50,5 +49,5 @@ public class Coordinator {
 
         int[] numbers = dataEngine.getNumbers();
         dataEngine.writeData(request.getFileOutputPath(), compute.findFactors(numbers));
-    }
+
 }
