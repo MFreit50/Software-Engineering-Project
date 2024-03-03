@@ -10,7 +10,7 @@ public class DataEngine implements DataEngineAPI{
     public String fileInputPath;
     public String fileOutputPath;
     public int[] numbers = null;
-    public EngineStatus readData(String fileInputPath){
+    public DataEngineAPI.EngineStatus readData(String fileInputPath){
         try{
             //create File object with user specified path
             File file = new File(fileInputPath);
@@ -26,22 +26,22 @@ public class DataEngine implements DataEngineAPI{
                     //trim any white space from input, parse to Int and add to list
                     list.add(Integer.parseInt(i.trim()));
                     }catch(NumberFormatException e){
-                        return EngineStatus.INVALID_INTEGER_FORMAT;
+                        return DataEngineAPI.EngineStatus.INVALID_INTEGER_FORMAT;
                     }
                 }
             }
             numbers = list.stream().mapToInt(Integer::intValue).toArray();
             list.clear();
         }catch(FileNotFoundException e){
-            return EngineStatus.FILE_NOT_FOUND;
+            return DataEngineAPI.EngineStatus.FILE_NOT_FOUND;
         }catch(Exception e){
             e.printStackTrace();
-            return EngineStatus.FILE_READ_ERROR;
+            return DataEngineAPI.EngineStatus.FILE_READ_ERROR;
         }
-        return EngineStatus.NO_ERROR;
+        return DataEngineAPI.EngineStatus.NO_ERROR;
     }
 
-    public EngineStatus writeData(String fileOutputPath, List<String> data)throws IOException{
+    public DataEngineAPI.EngineStatus writeData(String fileOutputPath, List<String> data)throws IOException{
         try{
             File outputFile = new File(fileOutputPath);
             FileWriter fileWriter = new FileWriter(outputFile);
@@ -51,9 +51,9 @@ public class DataEngine implements DataEngineAPI{
             fileWriter.close();
         }catch(IOException e){
             e.printStackTrace();
-            return EngineStatus.FILE_WRITE_ERROR;
+            return DataEngineAPI.EngineStatus.FILE_WRITE_ERROR;
         }
-        return EngineStatus.NO_ERROR;
+        return DataEngineAPI.EngineStatus.NO_ERROR;
     }
 
     public void setInputSource(String fileInputPath){
