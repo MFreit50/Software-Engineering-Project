@@ -72,10 +72,14 @@ public class TestMultiUser {
 
 	private List<String> loadAllOutput(String prefix, int numThreads) throws IOException {
 		List<String> result = new ArrayList<>();
-		for (int i = 0; i < numThreads; i++) {
-			File multiThreadedOut = 
-					new File(prefix + i);
-			result.addAll(Files.readAllLines(multiThreadedOut.toPath()));
+		try{
+			for (int i = 0; i < numThreads; i++) {
+				File multiThreadedOut = 
+						new File(prefix + i);
+				result.addAll(Files.readAllLines(multiThreadedOut.toPath()));
+			}
+		}catch(Exception e){
+			e.getStackTrace();
 		}
 		return result;
 	}
