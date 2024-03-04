@@ -48,6 +48,7 @@ public class Coordinator {
             if (readStatus != DataEngine.EngineStatus.NO_ERROR) {
                 return;
             }
+            compute.setDelimiter(request.getDelimiter());//set delimiter for factoringIMP
             int[] numbers = dataEngine.getNumbers();
             dataEngine.writeData(request.getFileOutputPath(), compute.findFactors(numbers));
         } catch (IOException e) {
