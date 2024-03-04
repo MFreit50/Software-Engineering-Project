@@ -4,11 +4,4 @@
 # Ignore Gradle build output directory
 build
 
-bin/main/Coordinator.class
-bin/main/DataEngine.class
-bin/main/FactoringImp.class
-bin/main/UserRequest.class
-bin/test/ComputeEngineIntegrationTest.class
-bin/test/DataEngineTest.class
-bin/test/TestDataEngineAPI.class
 *.class
