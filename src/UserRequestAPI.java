@@ -1,12 +1,14 @@
 
 public interface UserRequestAPI{
-    //Accessor methods
+    //Mutator methods
+    void setDelimiter(char delimiter);
 
+    //Accessor methods
     InputConfig getInputConfig();
     OutputConfig getOutputConfig();
     String getFileInputPath();
     String getFileOutputPath();
-    String getDelimiter();
+    char getDelimiter();
     
     JobStatus.JobStatusCheck checkJobStatus();
 }
