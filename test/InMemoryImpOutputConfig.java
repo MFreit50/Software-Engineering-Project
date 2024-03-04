@@ -15,4 +15,7 @@ public class InMemoryImpOutputConfig implements OutputConfig {
     public void setOutputSource(String outputSource) {
 
     }
+    public String getFileName(){
+        return null;
+    }
 }
