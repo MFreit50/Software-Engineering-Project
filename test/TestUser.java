@@ -13,13 +13,13 @@ public class TestUser {
 	}
 
 	public void run(String outputPath) {
-		String delimiter = ";";
+		char delimiter = ';';
 		String inputPath = "test" + File.separatorChar + "testInputFile.test";
 		
 		// TODO 4: Call the appropriate method(s) on the coordinator to get it to 
 		// run the compute job specified by inputPath, outputPath, and delimiter
 		try {
-			coordinator.initiate(new UserRequest(new FileInputConfig(inputPath), new FileOutputConfig(outputPath), String.valueOf(delimiter)));
+			coordinator.initiate(new UserRequest(new FileInputConfig(inputPath), new FileOutputConfig(outputPath), delimiter));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

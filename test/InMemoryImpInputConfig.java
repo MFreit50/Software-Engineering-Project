@@ -18,4 +18,7 @@ public class InMemoryImpInputConfig implements InputConfig {
     public void setInputSource(String inputSource) {
 
     }
+    public String getFileName(){
+        return null;
+    }
 }
