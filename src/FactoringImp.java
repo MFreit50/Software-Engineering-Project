@@ -1,12 +1,12 @@
 import java.util.LinkedList;
 import java.util.List;
 public class FactoringImp {
-    private String delimiter = ";";
+    private char delimiter;
     public List<String> findFactors(int [] nums){
         List<String> factors = new LinkedList<>();
         for(int i : nums) {
             factors.add(findFactorsHelper(i));
-            factors.add(delimiter);
+            factors.add(String.valueOf(delimiter));
         }
         return factors;
     }
@@ -21,8 +21,8 @@ public class FactoringImp {
         factorString.deleteCharAt(factorString.length() - 1).append(delimiter);
         return factorString.toString();
     }
-    public  void setDelimiter(String delim) {
-        delimiter = delim;
+    public  void setDelimiter(char delimiter) {
+        this.delimiter = delimiter;
     }
 }
 
