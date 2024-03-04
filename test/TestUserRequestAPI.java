@@ -19,13 +19,13 @@ public class TestUserRequestAPI {
     public void testSetDelimiter() {
         UserRequestAPI request = new UserRequest(new FileInputConfig(null), new FileOutputConfig(null));
         request.setDelimiter(',');
-        assertEquals(",", request.getDelimiter());
+        assertEquals(',', request.getDelimiter());
     }
 
     @Test
     public void testSetDefaultDelimiter() {
         UserRequestAPI request = new UserRequest(new FileInputConfig(null), new FileOutputConfig(null));
-        assertEquals(";", request.getDelimiter());
+        assertEquals(';', request.getDelimiter());
     }
 
     @Test
