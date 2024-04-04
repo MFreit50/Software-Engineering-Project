@@ -11,3 +11,9 @@ build
 *.iml
 *.ipr
 *.iws
+*.project
+*.settings
+*.iml
+*.ipr
+*.iws
+
