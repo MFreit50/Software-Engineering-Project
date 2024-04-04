@@ -5,3 +5,8 @@
 build
 
 *.class
+*.project
+*.settings
+*.iml
+*.ipr
+*.iws
