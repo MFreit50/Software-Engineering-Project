@@ -15,7 +15,6 @@ public class DataEngine implements DataEngineAPI{
             //create File object with user specified path
             File file = new File(fileInputPath);
             Scanner fileScanner = new Scanner(file);
-            fileScanner.close();
             //list stores data in the file
             LinkedList<Integer> list = new LinkedList<>();
             while(fileScanner.hasNextLine()){
@@ -32,6 +31,7 @@ public class DataEngine implements DataEngineAPI{
             }
             numbers = list.stream().mapToInt(Integer::intValue).toArray();
             list.clear();
+            fileScanner.close();
         }catch(FileNotFoundException e){
             return EngineStatus.FILE_NOT_FOUND;
         }catch(Exception e){

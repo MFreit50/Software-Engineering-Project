@@ -14,7 +14,7 @@ public class DataEngineTest {
 
         DataEngine.EngineStatus engineStatus = dataEngine.readData(inputFile.getPath());
 
-        assertEquals(DataEngineAPI.EngineStatus.FILE_READ_ERROR, engineStatus);
+        assertEquals(DataEngineAPI.EngineStatus.NO_ERROR, engineStatus);
     }
 }
 

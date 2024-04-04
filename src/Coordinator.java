@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Coordinator {
     private DataEngine dataEngine;
-    private FactoringImp compute;
+    private ComputeEngine compute;
 
-    Coordinator(DataEngine dataEngine, FactoringImp compute) {
+    Coordinator(DataEngine dataEngine, ComputeEngine compute) {
         this.dataEngine = dataEngine;
         this.compute = compute;
     }

@@ -10,13 +10,11 @@ public class ComputeEngineIntegrationTest {
 
     @Test
     public void testComputeEngineIntegration() throws IOException {
-        List<Integer> inputData = Arrays.asList(1, 10, 25);
-        InMemoryImpInputConfig inputConfig = new InMemoryImpInputConfig(inputData);
+        int[] input = {1, 10, 25};
+        //InMemoryImpInputConfig inputConfig = new InMemoryImpInputConfig(inputData);
         InMemoryImpOutputConfig outputConfig = new InMemoryImpOutputConfig();
 
-        for (Integer input : inputData) {
-            computeEngine.computeProcess(input);
-        }
+        computeEngine.findFactors(input);
 
         String outputData = outputConfig.getOutputSource();
     }
