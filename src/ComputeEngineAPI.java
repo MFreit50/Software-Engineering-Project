@@ -1,5 +1,8 @@
+import java.util.List;
+
 public interface ComputeEngineAPI{
 	// Perform computation
-	int computeProcess(int value);
-	 
+	public List<String> findFactors(int[] nums);
+	String findFactorsHelper(int num);
+	void setDelimiter(char delimiter);
 }
