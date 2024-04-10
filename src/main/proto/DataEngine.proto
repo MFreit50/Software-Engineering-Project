@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package dataengine;
+
+service DataEngine {
+  rpc ReadData(ReadDataRequest) returns (ReadDataResponse);
+  rpc WriteData(WriteDataRequest) returns (WriteDataResponse);
+}
+
+message ReadDataRequest {
+  string fileInputPath = 1;
+}
+
+message ReadDataResponse {
+  repeated int32 numbers = 1;
+}
+
+message WriteDataRequest {
+  string fileOutputPath = 1;
+  repeated string data = 2;
+}
+
+message WriteDataResponse {
+  bool success = 1;
+}
