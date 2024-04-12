@@ -13,7 +13,9 @@ public class UserInterface{
         FileOutputConfig fileOutputPath = new FileOutputConfig(sc.nextLine());
         UserRequest userRequest = new UserRequest(fileInputPath, fileOutputPath);
         Coordinator coordinator = new Coordinator();
-        coordinator.initiate(userRequest);
+        DataResult dataResult = coordinator.initiate(userRequest);
+        System.out.println(dataResult.getEngineStatus());
+
         sc.close();
     }
 }
