@@ -9,12 +9,10 @@ import java.util.List;
 public class DataEngine implements DataEngineAPI{
     public String fileInputPath;
     public String fileOutputPath;
-    public int[] numbers = null;
-    public EngineStatus readData(String fileInputPath){
-        try{
-            //create File object with user specified path
-            File file = new File(fileInputPath);
-            Scanner fileScanner = new Scanner(file);
+    public int[] computedResults = null;
+
+    public DataResult readData(String fileInputPath){
+        try(Scanner fileScanner = new Scanner(fileInputPath)){
             //list stores data in the file
             LinkedList<Integer> list = new LinkedList<>();
             while(fileScanner.hasNextLine()){
@@ -25,23 +23,27 @@ public class DataEngine implements DataEngineAPI{
                     //trim any white space from input, parse to Int and add to list
                     list.add(Integer.parseInt(i.trim()));
                     }catch(NumberFormatException e){
-                        return EngineStatus.INVALID_INTEGER_FORMAT;
+                        return new DataResult(null, EngineStatus.INVALID_INTEGER_FORMAT);
                     }
                 }
             }
-            numbers = list.stream().mapToInt(Integer::intValue).toArray();
+            computedResults = list.stream().mapToInt(Integer::intValue).toArray();
             list.clear();
             fileScanner.close();
-        }catch(FileNotFoundException e){
-            return EngineStatus.FILE_NOT_FOUND;
         }catch(Exception e){
-            e.printStackTrace();
-            return EngineStatus.FILE_READ_ERROR;
+            if(e instanceof FileNotFoundException){
+                return new DataResult(null, EngineStatus.FILE_NOT_FOUND);
+            }else if(e instanceof NumberFormatException){
+                return new DataResult(null, EngineStatus.INVALID_INTEGER_FORMAT);
+            }else{
+                e.printStackTrace();
+                return new DataResult(null, EngineStatus.FILE_READ_ERROR);
+            }
         }
-        return EngineStatus.NO_ERROR;
+        return new DataResult(computedResults, EngineStatus.NO_ERROR);
     }
 
-    public EngineStatus writeData(String fileOutputPath, List<String> data)throws IOException{
+    public DataResult writeData(String fileOutputPath, List<String> data)throws IOException{
         try{
             File outputFile = new File(fileOutputPath);
 
@@ -57,9 +59,9 @@ public class DataEngine implements DataEngineAPI{
             fileWriter.close();
         }catch(IOException e){
             e.printStackTrace();
-            return EngineStatus.FILE_WRITE_ERROR;
+            return new DataResult(null, EngineStatus.FILE_WRITE_ERROR);
         }
-        return EngineStatus.NO_ERROR;
+        return new DataResult(null, EngineStatus.NO_ERROR);
     }
 
     public void setInputSource(String fileInputPath){
@@ -67,8 +69,5 @@ public class DataEngine implements DataEngineAPI{
     }
     public void setOutputDestination(String fileOutputPath){
         this.fileOutputPath = fileOutputPath;
-    }
-    public int[] getNumbers(){
-        return numbers;
     }
 }
