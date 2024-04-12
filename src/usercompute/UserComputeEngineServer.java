@@ -8,11 +8,16 @@ public class UserComputeEngineServer {
     private final int port;
     private final Server server;
 
-    public ComputeEngineServer(int port) {
+    public void UserComputeEngineServer(int port) {
         this.port = port;
         this.server = ServerBuilder.forPort(port)
                 .addService(new ComputeEngineImpl())
                 .build();
+    }
+
+    public UserComputeEngineServer(int port, Server server) {
+        this.port = port;
+        this.server = server;
     }
 
     public void start() throws Exception {

@@ -8,7 +8,7 @@ import usercompute.FindFactorsResponse;
 
 public class UserComputeEngineClient {
     private final ManagedChannel channel;
-    private final ComputeEngineGrpc.ComputeEngineBlockingStub blockingStub;
+    private final UserComputeEngineGrpc.ComputeEngineBlockingStub blockingStub;
 
     public UserComputeEngineClient(String host, int port) {
         this.channel = ManagedChannelBuilder.forAddress(host, port)
