@@ -1,14 +1,7 @@
-syntax = "proto3";
-
 package dataengine;
 
-service DataEngine {
-  rpc ReadData(ReadDataRequest) returns (ReadDataResponse);
-  rpc WriteData(WriteDataRequest) returns (WriteDataResponse);
-}
-
 message ReadDataRequest {
-  string fileInputPath = 1;
+  required string fileInputPath = 1;
 }
 
 message ReadDataResponse {
@@ -16,10 +9,15 @@ message ReadDataResponse {
 }
 
 message WriteDataRequest {
-  string fileOutputPath = 1;
+  required string fileOutputPath = 1;
   repeated string data = 2;
 }
 
 message WriteDataResponse {
-  bool success = 1;
+  required bool success = 1;
+}
+
+service DataEngine {
+  rpc ReadData(ReadDataRequest) returns (ReadDataResponse);
+  rpc WriteData(WriteDataRequest) returns (WriteDataResponse);
 }
