@@ -44,6 +44,12 @@ public class DataEngine implements DataEngineAPI{
     public EngineStatus writeData(String fileOutputPath, List<String> data)throws IOException{
         try{
             File outputFile = new File(fileOutputPath);
+
+            //create the output file if it does not exist
+            if(outputFile.exists() == false){
+                outputFile.mkdirs();
+            }
+            
             FileWriter fileWriter = new FileWriter(outputFile);
             for(String datum : data){
                 fileWriter.write(datum);
