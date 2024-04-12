@@ -2,13 +2,13 @@ package usercompute;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import usercompute.UserComputeEngineGrpc;
+import usercompute.UserComputeEngineServiceGrpc;
 import usercompute.FindFactorsRequest;
 import usercompute.FindFactorsResponse;
 
 public class UserComputeEngineClient {
     private final ManagedChannel channel;
-    private final UserComputeEngineGrpc.ComputeEngineBlockingStub blockingStub;
+    private final ComputeEngineGrpc.ComputeEngineBlockingStub blockingStub;
 
     public UserComputeEngineClient(String host, int port) {
         this.channel = ManagedChannelBuilder.forAddress(host, port)

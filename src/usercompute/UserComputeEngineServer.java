@@ -8,7 +8,7 @@ public class UserComputeEngineServer {
     private final int port;
     private final Server server;
 
-    public void UserComputeEngineServer(int port) {
+    public UserComputeEngineServer(int port) {
         this.port = port;
         this.server = ServerBuilder.forPort(port)
                 .addService(new ComputeEngineImpl())
