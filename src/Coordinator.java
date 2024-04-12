@@ -35,20 +35,20 @@ public class Coordinator {
         threadPool.shutdown();
     }
 
-    public void initiate(UserRequest request) throws IOException{
+    public DataResult initiate(UserRequest request) throws IOException{
         DataEngine dataEngine = new DataEngine();
         ComputeEngine computeEngine = new ComputeEngine();
+        DataResult dataResult;
         try {
-            DataEngine.EngineStatus readStatus = dataEngine.readData(request.getFileInputPath());
-            System.out.println(readStatus + "read status");
-            if (readStatus != DataEngine.EngineStatus.NO_ERROR) {
-                return;
+            dataResult = dataEngine.readData(request.getFileInputPath());
+            if (dataResult.getEngineStatus() != DataEngine.EngineStatus.NO_ERROR) {
+                return dataResult;
             }
-            computeEngine.setDelimiter(request.getDelimiter());//set delimiter for factoringIMP
-            int[] numbers = dataEngine.getNumbers();
-            dataEngine.writeData(request.getFileOutputPath(), computeEngine.findFactors(numbers));
+            computeEngine.setDelimiter(request.getDelimiter());//set delimiter for ComputeEngine
+            dataEngine.writeData(request.getFileOutputPath(), computeEngine.findFactors(dataResult.getComputedResults()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return dataResult;
     }
 }
