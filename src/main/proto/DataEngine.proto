@@ -17,7 +17,7 @@ message WriteDataResponse {
   required bool success = 1;
 }
 
-service DataEngine {
+service DataEngineService {
   rpc ReadData(ReadDataRequest) returns (ReadDataResponse);
   rpc WriteData(WriteDataRequest) returns (WriteDataResponse);
 }
