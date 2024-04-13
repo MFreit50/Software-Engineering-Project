@@ -3,16 +3,17 @@ package dataengine;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
+import dataengine.DataEngineServiceGrpc;
 
 public class DataEngineClient {
     private final ManagedChannel channel;
-    private final DataEngineGrpc.DataEngineBlockingStub blockingStub;
+    private final DataEngineServiceGrpc.DataEngineBlockingStub blockingStub;
 
     public DataEngineClient(String host, int port) {
         channel = ManagedChannelBuilder.forAddress(host, port)
                 .usePlaintext()
                 .build();
-        blockingStub = DataEngineGrpc.newBlockingStub(channel);
+        blockingStub = DataEngineServiceGrpc.newBlockingStub(channel);
     }
 
     public void shutdown() throws InterruptedException {
