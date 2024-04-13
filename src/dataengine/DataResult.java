@@ -1,4 +1,5 @@
-public class DataResult{
+package dataengine;
+public class  DataResult{
     private int[] computedResults;
     private DataEngineAPI.EngineStatus engineStatus;
 

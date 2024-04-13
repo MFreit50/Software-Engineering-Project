@@ -2,11 +2,7 @@ package dataengine;
 import java.util.List;
 import java.util.Scanner;
 
-import DataEngine;
-import DataEngine.ReadDataRequest;
-import DataEngine.ReadDataResponse;
-import DataEngine.WriteDataRequest;
-import DataEngine.WriteDataResponse;
+import dataengine.DataEngine;
 import io.grpc.stub.StreamObserver;
 import java.io.IOException;
 import dataengine.DataEngineServiceGrpc.DataEngineServiceImplBase;
