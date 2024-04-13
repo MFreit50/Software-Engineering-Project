@@ -24,7 +24,7 @@ public class TestDataEngineAPI {
 
         DataEngineAPI dataEngine = new DataEngine();
 
-        DataEngineAPI.EngineStatus status = dataEngine.readData("inputSource");
+        DataEngineAPI.EngineStatus status = dataEngine.readData("inputSource").getEngineStatus();
 
         assertEquals(DataEngineAPI.EngineStatus.FILE_NOT_FOUND, status);
     }

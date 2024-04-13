@@ -20,10 +20,10 @@ public interface DataEngineAPI {
         }
     }
     // Method for reading data from the input source
-    public DataResult readData(String inputSource);
+    public EngineStatus readData(String inputSource);
 
     // Method for writing data to the output destination
-    public DataResult writeData(String outputDestination, List<String> data)throws IOException;
+    public EngineStatus writeData(String outputDestination, List<String> data)throws IOException;
 
     //mutator methods
     public void setInputSource(String inputSource);

@@ -1,3 +1,5 @@
+import dataengine.DataEngineAPI;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,7 @@ public class InMemoryImpDataEngineAPI implements DataEngineAPI {
 
     public InMemoryImpDataEngineAPI() {
         this.inputData = new ArrayList<>();
-        this.readStatus = EngineStatus.NO_ERROR;
+        this.readStatus = DataEngineAPI.EngineStatus.NO_ERROR;
         this.writeStatus = EngineStatus.NO_ERROR;
     }
 
@@ -38,7 +40,6 @@ public class InMemoryImpDataEngineAPI implements DataEngineAPI {
         this.outputDestination = outputDestination;
     }
 
-    @Override
     public int[] getNumbers() {
         int[] numbers = new int[0];
         return numbers;
