@@ -11,7 +11,7 @@ public class UserComputeEngineServer {
     public UserComputeEngineServer(int port) {
         this.port = port;
         this.server = ServerBuilder.forPort(port)
-                .addService(new ComputeEngineImpl())
+                .addService(new UserComputeEngineServiceImpl())
                 .build();
     }
 

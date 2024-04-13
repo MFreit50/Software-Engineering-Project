@@ -3,8 +3,6 @@ package usercompute;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import usercompute.UserComputeEngineServiceGrpc;
-import usercompute.FindFactorsRequest;
-import usercompute.FindFactorsResponse;
 
 public class UserComputeEngineClient {
     private final ManagedChannel channel;
@@ -14,7 +12,7 @@ public class UserComputeEngineClient {
         this.channel = ManagedChannelBuilder.forAddress(host, port)
                 .usePlaintext()
                 .build();
-        this.blockingStub = UserComputeEngineGrpc.newBlockingStub(channel);
+        this.blockingStub = UserComputeEngineServiceGrpc.newBlockingStub(channel);
     }
 
     public void shutdown() throws InterruptedException {
@@ -48,4 +46,5 @@ public class UserComputeEngineClient {
         }
     }
 }
+
 
