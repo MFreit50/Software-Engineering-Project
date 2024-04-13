@@ -12,7 +12,7 @@ public class DataEngine implements DataEngineAPI{
     public int[] computedResults = null;
 
     public DataResult readData(String fileInputPath){
-        try(Scanner fileScanner = new Scanner(fileInputPath)){
+        try(Scanner fileScanner = new Scanner(new File(fileInputPath))){
             //list stores data in the file
             LinkedList<Integer> list = new LinkedList<>();
             while(fileScanner.hasNextLine()){
@@ -31,12 +31,12 @@ public class DataEngine implements DataEngineAPI{
             list.clear();
             fileScanner.close();
         }catch(Exception e){
+            e.printStackTrace();
             if(e instanceof FileNotFoundException){
                 return new DataResult(null, EngineStatus.FILE_NOT_FOUND);
             }else if(e instanceof NumberFormatException){
                 return new DataResult(null, EngineStatus.INVALID_INTEGER_FORMAT);
             }else{
-                e.printStackTrace();
                 return new DataResult(null, EngineStatus.FILE_READ_ERROR);
             }
         }
@@ -47,9 +47,8 @@ public class DataEngine implements DataEngineAPI{
         try{
             File outputFile = new File(fileOutputPath);
 
-            //create the output file if it does not exist
-            if(outputFile.exists() == false){
-                outputFile.mkdirs();
+            if (!outputFile.exists()) {
+                outputFile.createNewFile();
             }
             
             FileWriter fileWriter = new FileWriter(outputFile);
