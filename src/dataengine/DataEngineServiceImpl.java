@@ -1,11 +1,10 @@
-
 package dataengine;
-
 import java.util.List;
 import io.grpc.stub.StreamObserver;
 import java.io.IOException;
+import dataengine.DataEngineServiceGrpc;
 
-public class DataEngineServiceImpl extends DataEngineServiceGrpc.DataEngineImplBase {
+public class DataEngineServiceImpl extends DataEngineServiceGrpc.DataEngineServiceImplBase {
 
     private final DataEngine dataEngine;
 
@@ -20,7 +19,7 @@ public class DataEngineServiceImpl extends DataEngineServiceGrpc.DataEngineImplB
 
         ReadDataResponse.Builder responseBuilder = ReadDataResponse.newBuilder();
 
-        if (result.getEngineStatus() == DataEngineAPI.EngineStatus.NO_ERROR) {
+        if (result.getEngineStatus() == DataEngine.EngineStatus.NO_ERROR) {
             int[] computedResults = result.getComputedResults();
             if (computedResults != null) {
                 for (int computedResult : computedResults) {
