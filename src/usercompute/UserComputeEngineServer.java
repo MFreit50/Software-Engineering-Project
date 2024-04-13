@@ -25,7 +25,7 @@ public class UserComputeEngineServer {
         System.out.println("Server started, listening on " + port);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.err.println("*** shutting down gRPC server since JVM is shutting down");
-            ComputeEngineServer.this.stop();
+            UserComputeEngineServer.this.stop();
             System.err.println("*** server shut down");
         }));
     }
@@ -43,20 +43,8 @@ public class UserComputeEngineServer {
     }
 
     public static void main(String[] args) throws Exception {
-        ComputeEngineServer server = new ComputeEngineServer(50051);
+        UserComputeEngineServer server = new UserComputeEngineServer(50051);
         server.start();
         server.blockUntilShutdown();
-    }
-
-    static class ComputeEngineImpl extends ComputeEngineGrpc.ComputeEngineImplBase {
-        @Override
-        public void findFactors(FindFactorsRequest request, StreamObserver<FindFactorsResponse> responseObserver) {
-            // Implement your findFactors logic here
-            FindFactorsResponse response = FindFactorsResponse.newBuilder()
-                    .addAllFactors(/* compute factors for request.numbers */)
-                    .build();
-            responseObserver.onNext(response);
-            responseObserver.onCompleted();
-        }
     }
 }

@@ -8,13 +8,13 @@ import usercompute.FindFactorsResponse;
 
 public class UserComputeEngineClient {
     private final ManagedChannel channel;
-    private final ComputeEngineGrpc.ComputeEngineBlockingStub blockingStub;
+    private final UserComputeEngineServiceGrpc.UserComputeEngineServiceBlockingStub blockingStub;
 
     public UserComputeEngineClient(String host, int port) {
         this.channel = ManagedChannelBuilder.forAddress(host, port)
                 .usePlaintext()
                 .build();
-        this.blockingStub = ComputeEngineGrpc.newBlockingStub(channel);
+        this.blockingStub = UserComputeEngineGrpc.newBlockingStub(channel);
     }
 
     public void shutdown() throws InterruptedException {
