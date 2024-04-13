@@ -36,8 +36,9 @@ public class DataEngineServiceImpl extends DataEngineServiceGrpc.DataEngineServi
     public void writeData(WriteDataRequest request, StreamObserver<WriteDataResponse> responseObserver) {
         WriteDataResponse response;
         String fileOutputPath = request.getFileName();
+        List<String> data = request.getWriteData();
         try{
-            DataResult result = dataEngine.WriteData(fileOutputPath);
+            DataResult result = dataEngine.WriteData(fileOutputPath,data);
             boolean success = result.getEngineStatus() == DataEngineAPI.EngineStatus.NO_ERROR;
             response = WriteDataResponse.newBuilder()
                     .setResult(success)
@@ -47,6 +48,9 @@ public class DataEngineServiceImpl extends DataEngineServiceGrpc.DataEngineServi
                     .setErrorMessage(e.getMessage())
                     .build();
         }
+
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
     }
 }
 
