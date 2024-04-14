@@ -2,7 +2,6 @@ package usercompute;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import usercompute.UserComputeEngineServiceGrpc;
 
 public class UserComputeEngineClient {
     private final ManagedChannel channel;
@@ -21,11 +20,11 @@ public class UserComputeEngineClient {
 
     public void findFactors(int[] numbers) {
         // Create request
-        FindFactorsRequest request = FindFactorsRequest.newBuilder()
+        UserComputeEngine.FindFactorsRequest request = UserComputeEngine.FindFactorsRequest.newBuilder()
                 .addAllNumbers(numbers)
                 .build();
 
-        FindFactorsResponse response = blockingStub.findFactors(request);
+        UserComputeEngine.FindFactorsResponse response = blockingStub.findFactors(request);
 
         System.out.println("Factors:");
         for (String factor : response.getFactorsList()) {
