@@ -1,3 +1,5 @@
+import dataengine.DataEngineAPI;
+
 import java.io.IOException;
 import java.util.Scanner;
 public class UserInterface{
@@ -13,7 +15,7 @@ public class UserInterface{
         FileOutputConfig fileOutputPath = new FileOutputConfig(sc.nextLine());
         UserRequest userRequest = new UserRequest(fileInputPath, fileOutputPath);
         Coordinator coordinator = new Coordinator();
-        DataResult dataResult = coordinator.initiate(userRequest);
+        DataEngineAPI.EngineStatus dataResult = coordinator.initiate(userRequest);
         System.out.println(dataResult.getEngineStatus());
 
         sc.close();
