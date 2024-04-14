@@ -13,7 +13,9 @@ build
 *.iws
 *.project
 *.settings
-*.iml
-*.ipr
-*.iws
+.idea/misc.xml
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
 
