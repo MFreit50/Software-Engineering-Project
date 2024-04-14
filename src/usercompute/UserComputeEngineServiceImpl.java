@@ -1,9 +1,8 @@
 package usercompute;
 
-import java.util.LinkedList;
-import java.util.List;
-import usercompute.UserComputeEngineServiceGrpc.UserComputeEngineServiceImplBase;
 import io.grpc.stub.StreamObserver;
+
+import java.util.List;
 
 
 public class UserComputeEngineServiceImpl  extends UserComputeEngineServiceGrpc.UserComputeEngineServiceImplBase {
@@ -14,17 +13,17 @@ public class UserComputeEngineServiceImpl  extends UserComputeEngineServiceGrpc.
         this.computeEngine = new ComputeEngine();
     }
 
-    public void findFactors(FindFactorsRequest request,
-                            StreamObserver<FindFactorsResponse> responseObserver) {
-        FindFactorResponse response;
+    public void findFactors(UserComputeEngine.FindFactorsRequest request,
+                            StreamObserver<UserComputeEngine.FindFactorsResponse> responseObserver) {
+        UserComputeEngine.FindFactorsResponse response;
         try {
             int[] nums = request.getNumsList().stream().mapToInt(Integer::intValue).toArray();
             List<String> factors = computeEngine.findFactors(nums);
-            response = FindFactorsResponse.newBuilder()
+            response = UserComputeEngine.FindFactorsResponse.newBuilder()
                     .addAllFactors(factors)
                     .build();
         } catch (Exception e) {
-            response = FindFactorsResponse.newBuilder()
+            response = UserComputeEngine.FindFactorsResponse.newBuilder()
                     .setErrorMessage(e.getMessage())
                     .build();
         }
