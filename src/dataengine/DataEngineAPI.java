@@ -18,6 +18,10 @@ public interface DataEngineAPI {
         public boolean status(){
             return status;
         }
+
+        public EngineStatus getEngineStatus() {
+            return this;
+        }
     }
     // Method for reading data from the input source
     public EngineStatus readData(String inputSource);
