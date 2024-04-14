@@ -1,46 +1,48 @@
 package dataengine;
 
+import java.util.concurrent.TimeUnit;
+
+import io.grpc.Channel;
+import io.grpc.Grpc;
+import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
-import dataengine.DataEngineServiceGrpc;
+import dataengine.DataEngineGrpc.DataEngineBlockingStub;
+import dataengine.DataEngineService.ReadDataRequest;
+import dataengine.DataEngineService.ReadDataResponse;
 
 public class DataEngineClient {
-    private final ManagedChannel channel;
-    private final DataEngineServiceGrpc.DataEngineBlockingStub blockingStub;
+    //private final ManagedChannel channel;
+    private final DataEngineBlockingStub blockingStub;
 
-    public DataEngineClient(String host, int port) {
-        channel = ManagedChannelBuilder.forAddress(host, port)
-                .usePlaintext()
-                .build();
-        blockingStub = DataEngineServiceGrpc.newBlockingStub(channel);
+    public DataEngineClient(Channel channel){
+        blockingStub = DataEngineGrpc.newBlockingStub(channel);
     }
 
-    public void shutdown() throws InterruptedException {
-        channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
-    }
-
-    public void readData(String fileInputPath) {
-        ReadDataRequest request = ReadDataRequest.newBuilder()
-                .setFileInputPath(fileInputPath)
-                .build();
-        try {
-            ReadDataResponse response = blockingStub.readData(request);
-            System.out.println("Data received from server:");
-            for (int number : response.getNumbersList()) {
-                System.out.println(number);
-            }
+    public void readData(String fileInputPath){
+        ReadDataRequest request = ReadDataRequest.newBuilder().setFileInputPath(fileInputPath).build();
+        ReadDataResponse response;
+        try{
+            response = blockingStub.readData(request);
         } catch (StatusRuntimeException e) {
             System.err.println("RPC failed: " + e.getStatus());
+            return;
         }
+        if (response.hasErrorMessage()) {
+	    	System.err.println("Error: " + response.getErrorMessage());
+	    } else {
+	    	System.out.println("Data Result: " + response.getDataResult());
+	    }
     }
 
     public static void main(String[] args) throws InterruptedException {
-        DataEngineClient client = new DataEngineClient("localhost", 50051);
+        String target = "localhost:50051";
+        ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create()).build();
         try {
-            client.readData("example.txt");
+            DataEngineClient client = new DataEngineClient(channel);
+            client.readData("src/factors.txt");
         } finally {
-            client.shutdown();
+            channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
         }
     }
 }
