@@ -10,7 +10,7 @@ enum EngineStatus {
   NO_ERROR = 6;
 }
 
-message DataResultService {
+message DataResult {
   repeated int32 computedResults = 1;
   required EngineStatus engineStatus = 2;
 }
