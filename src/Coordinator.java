@@ -46,7 +46,7 @@ public class Coordinator {
         DataEngineAPI.EngineStatus dataResult;
         try {
             // Call readData method of DataEngine directly
-            dataResult = dataEngine.readData(request.getFileInputPath());
+            dataResult = dataEngine.readData(request.getFileInputPath()).getEngineStatus();
             if (dataResult != DataEngineAPI.EngineStatus.NO_ERROR) {
                 return dataResult;
             }

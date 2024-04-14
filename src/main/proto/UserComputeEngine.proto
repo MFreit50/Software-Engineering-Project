@@ -6,6 +6,7 @@ message FindFactorsRequest {
 
 message FindFactorsResponse {
     repeated string factors = 1;
+    optional string error_message = 2;
 }
 
 service UserComputeEngineService {
