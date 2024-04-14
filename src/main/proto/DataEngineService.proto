@@ -1,5 +1,6 @@
 package dataengine;
 import "DataResult.proto";
+
 message ReadDataRequest {
   required string fileInputPath = 1;
 }
@@ -16,6 +17,7 @@ message WriteDataRequest {
 
 message WriteDataResponse {
   required bool success = 1;
+  optional string errorMessage = 2;
 }
 
 service DataEngineService {
