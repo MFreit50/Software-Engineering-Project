@@ -1,3 +1,4 @@
+package dataengine;
 import java.io.IOException;
 import java.util.List;
 public interface DataEngineAPI {
@@ -17,6 +18,10 @@ public interface DataEngineAPI {
         public boolean status(){
             return status;
         }
+
+        public EngineStatus getEngineStatus() {
+            return this;
+        }
     }
     // Method for reading data from the input source
     public EngineStatus readData(String inputSource);
@@ -27,6 +32,4 @@ public interface DataEngineAPI {
     //mutator methods
     public void setInputSource(String inputSource);
     public void setOutputDestination(String outputDestination);
-    //accessor methods
-    public int[] getNumbers();   
 }

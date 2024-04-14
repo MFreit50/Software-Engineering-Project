@@ -1,8 +1,7 @@
 import org.junit.jupiter.api.Test;
+import usercompute.ComputeEngine;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 public class ComputeEngineIntegrationTest {
     public ComputeEngine computeEngine = new ComputeEngine();

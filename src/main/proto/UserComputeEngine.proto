@@ -1,16 +1,13 @@
-syntax = "proto3";
+package usercompute;
 
-// Define the request message
 message FindFactorsRequest {
     repeated int32 nums = 1;
 }
 
-// Define the response message
 message FindFactorsResponse {
     repeated string factors = 1;
 }
 
-// Define the service interface
-service ComputeEngineService {
+service UserComputeEngineService {
     rpc FindFactors(FindFactorsRequest) returns (FindFactorsResponse);
 }

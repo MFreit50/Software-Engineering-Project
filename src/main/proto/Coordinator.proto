@@ -1,0 +1,5 @@
+message UserRequest {
+    required string fileInputPath = 1;
+    required string fileOutputPath = 2;
+    required string delimiter = 3;
+}

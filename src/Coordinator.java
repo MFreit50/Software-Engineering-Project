@@ -1,18 +1,16 @@
+import dataengine.DataEngine;
+import dataengine.DataEngineAPI;
+import dataengine.DataResult;
+import usercompute.ComputeEngine;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Coordinator {
-    private DataEngine dataEngine;
-    private ComputeEngine compute;
-
-    Coordinator(DataEngine dataEngine, ComputeEngine compute) {
-        this.dataEngine = dataEngine;
-        this.compute = compute;
-    }
     public void initiateMultiThreaded(List<UserRequest> requests) {
         int numThreads = 4; // Upper bound set to 4 threads
         ExecutorService threadPool = Executors.newFixedThreadPool(numThreads);
@@ -42,17 +40,21 @@ public class Coordinator {
         threadPool.shutdown();
     }
 
-    public void initiate(UserRequest request) throws IOException{
+    public DataEngineAPI.EngineStatus initiate(UserRequest request) throws IOException {
+        DataEngine dataEngine = new DataEngine();
+        ComputeEngine computeEngine = new ComputeEngine();
+        DataEngineAPI.EngineStatus dataResult;
         try {
-            DataEngine.EngineStatus readStatus = dataEngine.readData(request.getFileInputPath());
-            if (readStatus != DataEngine.EngineStatus.NO_ERROR) {
-                return;
+            // Call readData method of DataEngine directly
+            dataResult = dataEngine.readData(request.getFileInputPath());
+            if (dataResult != DataEngineAPI.EngineStatus.NO_ERROR) {
+                return dataResult;
             }
-            compute.setDelimiter(request.getDelimiter());//set delimiter for factoringIMP
-            int[] numbers = dataEngine.getNumbers();
-            dataEngine.writeData(request.getFileOutputPath(), compute.findFactors(numbers));
+            computeEngine.setDelimiter(request.getDelimiter());//set delimiter for ComputeEngine
+            dataEngine.writeData(request.getFileOutputPath(), computeEngine.findFactors(DataResult.getComputedResults()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return dataResult;
     }
 }

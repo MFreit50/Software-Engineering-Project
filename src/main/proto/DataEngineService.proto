@@ -1,0 +1,26 @@
+package dataengine;
+import "DataResult.proto";
+
+message ReadDataRequest {
+  required string fileInputPath = 1;
+}
+
+message ReadDataResponse {
+  optional DataResultService dataResult = 1;
+  optional string errorMessage = 2;
+}
+
+message WriteDataRequest {
+  required string fileOutputPath = 1;
+  repeated string data = 2;
+}
+
+message WriteDataResponse {
+  required bool success = 1;
+  optional string errorMessage = 2;
+}
+
+service DataEngineService {
+  rpc ReadData(ReadDataRequest) returns (ReadDataResponse);
+  rpc WriteData(WriteDataRequest) returns (WriteDataResponse);
+}

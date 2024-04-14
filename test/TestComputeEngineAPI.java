@@ -1,5 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
+import usercompute.ComputeEngine;
+import usercompute.ComputeEngineAPI;
 
 public class TestComputeEngineAPI {
     @Test

@@ -5,9 +5,15 @@
 build
 
 *.class
+.classpath
+.project
+.settings
+*.iml
+*.ipr
+*.iws
 *.project
 *.settings
 *.iml
 *.ipr
 *.iws
-.vscode/settings.json
+
