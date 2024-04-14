@@ -1,4 +1,8 @@
+import dataengine.DataEngine;
+import dataengine.DataEngineAPI;
+import dataengine.DataResult;
 import usercompute.ComputeEngine;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,17 +40,18 @@ public class Coordinator {
         threadPool.shutdown();
     }
 
-    public DataResult initiate(UserRequest request) throws IOException{
+    public DataEngineAPI.EngineStatus initiate(UserRequest request) throws IOException {
         DataEngine dataEngine = new DataEngine();
         ComputeEngine computeEngine = new ComputeEngine();
-        DataResult dataResult;
+        DataEngineAPI.EngineStatus dataResult;
         try {
+            // Call readData method of DataEngine directly
             dataResult = dataEngine.readData(request.getFileInputPath());
-            if (dataResult.getEngineStatus() != DataEngine.EngineStatus.NO_ERROR) {
+            if (dataResult != DataEngineAPI.EngineStatus.NO_ERROR) {
                 return dataResult;
             }
             computeEngine.setDelimiter(request.getDelimiter());//set delimiter for ComputeEngine
-            dataEngine.writeData(request.getFileOutputPath(), computeEngine.findFactors(dataResult.getComputedResults()));
+            dataEngine.writeData(request.getFileOutputPath(), computeEngine.findFactors(DataResult.getComputedResults()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

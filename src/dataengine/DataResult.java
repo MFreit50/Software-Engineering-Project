@@ -8,7 +8,7 @@ public class  DataResult{
         this.engineStatus = engineStatus;
     }
 
-    public int[] getComputedResults() {
+    public static int[] getComputedResults() {
         return computedResults;
     }
 
