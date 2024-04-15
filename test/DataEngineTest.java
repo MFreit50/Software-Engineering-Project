@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
+import dataengine.DataEngineServiceImpl;
+import dataengine.DataEngineService.DataEngineResponse;
+import dataengine.DataEngineService.EngineStatus;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DataEngineTest {
@@ -8,13 +11,11 @@ public class DataEngineTest {
     public void testFileReadFormat() throws IOException {
         File inputFile = File.createTempFile("Not_Integers.txt", "Hello, World");
 
-        DataEngine dataEngine = new DataEngine();
+        DataEngineServiceImpl dataEngine = new DataEngineServiceImpl();
+        DataEngineResponse dataEngineResponse = dataEngine.readData(inputFile.getPath());
+        EngineStatus engineStatus = dataEngineResponse.getEngineStatus();
 
-        dataEngine.setInputSource(inputFile.getPath());
-
-        DataEngine.EngineStatus engineStatus = dataEngine.readData(inputFile.getPath());
-
-        assertEquals(DataEngineAPI.EngineStatus.NO_ERROR, engineStatus);
+        assertEquals(EngineStatus.NO_ERROR, engineStatus);
     }
 }
 

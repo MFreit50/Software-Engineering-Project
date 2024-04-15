@@ -1,4 +1,5 @@
 import dataengine.DataEngineAPI;
+import dataengine.DataResult;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,23 +9,23 @@ public class InMemoryImpDataEngineAPI implements DataEngineAPI {
     private String inputSource;
     private String outputDestination;
     private List<String> inputData;
-    private EngineStatus readStatus;
-    private EngineStatus writeStatus;
+    private DataResult readStatus;
+    private DataResult writeStatus;
 
     public InMemoryImpDataEngineAPI() {
         this.inputData = new ArrayList<>();
-        this.readStatus = DataEngineAPI.EngineStatus.NO_ERROR;
-        this.writeStatus = EngineStatus.NO_ERROR;
+        this.readStatus = new DataResult(null, EngineStatus.NO_ERROR);
+        this.writeStatus = new DataResult(null, EngineStatus.NO_ERROR);
     }
 
     @Override
-    public EngineStatus readData(String inputSource) {
+    public DataResult readData(String inputSource) {
         this.inputSource = inputSource;
         return readStatus;
     }
 
     @Override
-    public EngineStatus writeData(String outputDestination, List<String> data) throws IOException {
+    public DataResult writeData(String outputDestination, List<String> data) throws IOException {
         this.outputDestination = outputDestination;
         this.inputData.addAll(data);
         return writeStatus;
