@@ -9,7 +9,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
 import dataengine.DataEngineGrpc.DataEngineBlockingStub;
 import dataengine.DataEngineService.ReadDataRequest;
-import dataengine.DataEngineService.ReadDataResponse;
+import dataengine.DataEngineService.DataEngineResponse;;
 
 public class DataEngineClient {
     //private final ManagedChannel channel;
@@ -21,7 +21,7 @@ public class DataEngineClient {
 
     public void readData(String fileInputPath){
         ReadDataRequest request = ReadDataRequest.newBuilder().setFileInputPath(fileInputPath).build();
-        ReadDataResponse response;
+        DataEngineResponse response;
         try{
             response = blockingStub.readData(request);
         } catch (StatusRuntimeException e) {
@@ -31,7 +31,7 @@ public class DataEngineClient {
         if (response.hasErrorMessage()) {
 	    	System.err.println("Error: " + response.getErrorMessage());
 	    } else {
-	    	System.out.println("Data Result: " + response.getDataResult());
+	    	System.out.println("Data Result: " + response.getComputedResultsList());
 	    }
     }
 
