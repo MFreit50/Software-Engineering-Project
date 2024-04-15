@@ -3,6 +3,7 @@ package usercompute;
 import io.grpc.stub.StreamObserver;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class UserComputeEngineServiceImpl  extends UserComputeEngineServiceGrpc.UserComputeEngineServiceImplBase {
@@ -17,7 +18,7 @@ public class UserComputeEngineServiceImpl  extends UserComputeEngineServiceGrpc.
                             StreamObserver<UserComputeEngine.FindFactorsResponse> responseObserver) {
         UserComputeEngine.FindFactorsResponse response;
         try {
-            int[] nums = request.getNumsList().stream().mapToInt(Integer::intValue).toArray();
+            List<Integer> nums = request.getNumsList().stream().map(Integer::intValue).collect(Collectors.toList());
             List<String> factors = computeEngine.findFactors(nums);
             response = UserComputeEngine.FindFactorsResponse.newBuilder()
                     .addAllFactors(factors)
