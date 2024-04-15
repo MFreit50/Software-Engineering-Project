@@ -1,13 +1,24 @@
 package dataengine;
-import "DataResultService.proto";
+
+enum EngineStatus {
+  FILE_NOT_FOUND = 0;
+  FILE_READ_ERROR = 1;
+  FILE_WRITE_ERROR = 2;
+  INVALID_PATH = 3;
+  INVALID_INPUT_DELIMITER = 4;
+  INVALID_INTEGER_FORMAT = 5;
+  NO_ERROR = 6;
+}
+
+message DataEngineResponse {
+  repeated int32 computedResults = 1;
+  required EngineStatus engineStatus = 2;
+  required bool success = 3;
+  optional string errorMessage = 4;
+}
 
 message ReadDataRequest {
   required string fileInputPath = 1;
-}
-
-message ReadDataResponse {
-  optional DataResult dataResult = 1;
-  optional string errorMessage = 2;
 }
 
 message WriteDataRequest {
@@ -15,12 +26,7 @@ message WriteDataRequest {
   repeated string data = 2;
 }
 
-message WriteDataResponse {
-  required bool success = 1;
-  optional string errorMessage = 2;
-}
-
 service DataEngine {
-  rpc ReadData(ReadDataRequest) returns (ReadDataResponse);
-  rpc WriteData(WriteDataRequest) returns (WriteDataResponse);
+  rpc ReadData(ReadDataRequest) returns (DataEngineResponse);
+  rpc WriteData(WriteDataRequest) returns (DataEngineResponse);
 }
