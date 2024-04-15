@@ -1,14 +1,14 @@
-import dataengine.DataEngine;
-import dataengine.DataEngineAPI;
-import dataengine.DataResult;
-import usercompute.ComputeEngine;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.ArrayList;
+import java.util.List;
+
+import usercompute.ComputeEngine;
+import dataengine.DataEngineService.DataEngineResponse;
+import dataengine.DataEngineService.EngineStatus;
+import dataengine.DataEngineServiceImpl;
 
 public class Coordinator {
     public void initiateMultiThreaded(List<UserRequest> requests) {
@@ -40,21 +40,18 @@ public class Coordinator {
         threadPool.shutdown();
     }
 
-    public DataEngineAPI.EngineStatus initiate(UserRequest request) throws IOException {
-        DataEngine dataEngine = new DataEngine();
+    public DataEngineResponse initiate(UserRequest request) throws IOException{
+        DataEngineServiceImpl dataEngine = new DataEngineServiceImpl();
         ComputeEngine computeEngine = new ComputeEngine();
-        DataEngineAPI.EngineStatus dataResult;
-        try {
-            // Call readData method of DataEngine directly
-            dataResult = dataEngine.readData(request.getFileInputPath()).getEngineStatus();
-            if (dataResult != DataEngineAPI.EngineStatus.NO_ERROR) {
-                return dataResult;
-            }
-            computeEngine.setDelimiter(request.getDelimiter());//set delimiter for ComputeEngine
-            dataEngine.writeData(request.getFileOutputPath(), computeEngine.findFactors(DataResult.getComputedResults()));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        DataEngineResponse dataResult;
+
+        dataResult = dataEngine.readData(request.getFileInputPath());
+        if (dataResult.getEngineStatus() != EngineStatus.NO_ERROR) {
+            return dataResult;
         }
+        computeEngine.setDelimiter(request.getDelimiter());//set delimiter for ComputeEngine
+        dataEngine.writeData(request.getFileOutputPath(), computeEngine.findFactors(dataResult.getComputedResultsList()));
+        
         return dataResult;
     }
 }
