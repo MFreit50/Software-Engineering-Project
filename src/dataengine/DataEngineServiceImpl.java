@@ -39,20 +39,17 @@ public class DataEngineServiceImpl extends DataEngineImplBase {
     }
 
     public DataEngineResponse readData(String fileInputPath){
-        List<Integer> computedResults;
+        //Stores numbers in file in integer format and sent for computation
+        final LinkedList<Integer> fileData = new LinkedList<>();
         try(Scanner fileScanner = new Scanner(new File(fileInputPath))){
-            //list stores data in the file
-            LinkedList<Integer> list = new LinkedList<>();
             while(fileScanner.hasNextLine()){
                 String line = fileScanner.nextLine();
                 String[] inputNumbers = line.split(",");
                 for(String i : inputNumbers){
                     //trim any white space from input, parse to Int and add to list
-                    list.add(Integer.parseInt(i.trim()));
+                    fileData.add(Integer.parseInt(i.trim()));
                 }
             }
-            computedResults = list.stream().map(Integer::intValue).collect(Collectors.toList());
-            list.clear();
         }catch(Exception e){
             e.printStackTrace();
             if(e instanceof FileNotFoundException){
@@ -63,7 +60,7 @@ public class DataEngineServiceImpl extends DataEngineImplBase {
                 return buildDataEngineResponse(null, EngineStatus.FILE_READ_ERROR, e);
             }
         }
-        return buildDataEngineResponse(computedResults, EngineStatus.NO_ERROR);
+        return buildDataEngineResponse(fileData, EngineStatus.NO_ERROR);
     }
 
     public DataEngineResponse writeData(String fileOutputPath, List<String> data){
@@ -87,17 +84,24 @@ public class DataEngineServiceImpl extends DataEngineImplBase {
     }
 
     public DataEngineResponse buildDataEngineResponse(Iterable<? extends Integer> computedResults, EngineStatus engineStatus, Exception e){
+        if(computedResults == null){
+            computedResults = new LinkedList<Integer>();
+        }
         return DataEngineResponse.newBuilder()
                 .addAllComputedResults(computedResults)
-                .setEngineStatus(EngineStatus.INVALID_INTEGER_FORMAT)
+                .setEngineStatus(engineStatus)
                 .setSuccess(engineStatus == EngineStatus.NO_ERROR)
                 .setErrorMessage(e.getMessage()).build();
     }
+
     public DataEngineResponse buildDataEngineResponse(Iterable<? extends Integer> computedResults, EngineStatus engineStatus){
+        if(computedResults == null){
+            computedResults = new LinkedList<Integer>();
+        }
         return DataEngineResponse.newBuilder()
                 .addAllComputedResults(computedResults)
-                .setEngineStatus(EngineStatus.INVALID_INTEGER_FORMAT)
+                .setEngineStatus(engineStatus)
                 .setSuccess(engineStatus == EngineStatus.NO_ERROR).build();
     }
-
+    
 }
