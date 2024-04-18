@@ -21,7 +21,7 @@ public class UserInterface{
         Coordinator coordinator = new Coordinator();
 
         DataEngineResponse dataResult = coordinator.initiate(userRequest);
-        System.out.println(dataResult.getEngineStatus());
+        System.out.println(dataResult.getEngineStatus() + dataResult.getErrorMessage());
 
         sc.close();
     }
