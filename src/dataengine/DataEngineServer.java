@@ -3,17 +3,20 @@ package dataengine;
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;
+import io.grpc.protobuf.services.ProtoReflectionService;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class DataEngineServer {
     private  Server server;
 
-    public void start() throws Exception {
+    private void start() throws IOException {
 
         int port = 50051;
         server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
                 .addService(new DataEngineServiceImpl())
+                .addService(ProtoReflectionService.newInstance())
                 .build()
                 .start();
         System.out.println("Data Engine server started on port " + port);

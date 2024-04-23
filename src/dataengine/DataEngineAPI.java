@@ -18,16 +18,12 @@ public interface DataEngineAPI {
         public boolean status(){
             return status;
         }
-
-        public EngineStatus getEngineStatus() {
-            return this;
-        }
     }
     // Method for reading data from the input source
-    public EngineStatus readData(String inputSource);
+    public DataResult readData(String inputSource);
 
     // Method for writing data to the output destination
-    public EngineStatus writeData(String outputDestination, List<String> data)throws IOException;
+    public DataResult writeData(String outputDestination, List<String> data)throws IOException;
 
     //mutator methods
     public void setInputSource(String inputSource);

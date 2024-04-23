@@ -2,7 +2,10 @@ package usercompute;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import usercompute.UserComputeEngineServiceGrpc;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class UserComputeEngineClient {
     private final ManagedChannel channel;
@@ -16,16 +19,20 @@ public class UserComputeEngineClient {
     }
 
     public void shutdown() throws InterruptedException {
-        channel.shutdown().awaitTermination(5, java.util.concurrent.TimeUnit.SECONDS);
+        channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
 
     public void findFactors(int[] numbers) {
-        // Create request
-        FindFactorsRequest request = FindFactorsRequest.newBuilder()
-                .addAllNumbers(numbers)
+
+        List<Integer> numsList = new ArrayList<>(numbers.length);
+        for (int num : numbers) {
+            numsList.add(num);
+        }
+        UserComputeEngine.FindFactorsRequest request = UserComputeEngine.FindFactorsRequest.newBuilder()
+                .addAllNums(numsList)
                 .build();
 
-        FindFactorsResponse response = blockingStub.findFactors(request);
+        UserComputeEngine.FindFactorsResponse response = blockingStub.findFactors(request);
 
         System.out.println("Factors:");
         for (String factor : response.getFactorsList()) {

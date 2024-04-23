@@ -2,7 +2,6 @@ package usercompute;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.stub.StreamObserver;
 
 public class UserComputeEngineServer {
     private final int port;
@@ -41,7 +40,6 @@ public class UserComputeEngineServer {
             server.awaitTermination();
         }
     }
-
     public static void main(String[] args) throws Exception {
         UserComputeEngineServer server = new UserComputeEngineServer(50051);
         server.start();
