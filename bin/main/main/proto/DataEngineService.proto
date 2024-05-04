@@ -1,0 +1,32 @@
+package dataengine;
+
+enum EngineStatus {
+  NO_ERROR = 0;
+  FILE_NOT_FOUND = 1;
+  FILE_READ_ERROR = 2;
+  FILE_WRITE_ERROR = 3;
+  INVALID_PATH = 4;
+  INVALID_INPUT_DELIMITER = 5;
+  INVALID_INTEGER_FORMAT = 6;
+}
+
+message DataEngineResponse {
+  repeated int32 computedResults = 1;
+  required EngineStatus engineStatus = 2;
+  required bool success = 3;
+  optional string errorMessage = 4;
+}
+
+message ReadDataRequest {
+  required string fileInputPath = 1;
+}
+
+message WriteDataRequest {
+  required string fileOutputPath = 1;
+  repeated string data = 2;
+}
+
+service DataEngine {
+  rpc ReadData(ReadDataRequest) returns (DataEngineResponse);
+  rpc WriteData(WriteDataRequest) returns (DataEngineResponse);
+}
