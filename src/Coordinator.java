@@ -5,14 +5,12 @@ import java.util.concurrent.Future;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Coordinator {
-    private DataEngine dataEngine;
-    private ComputeEngine compute;
+import usercompute.ComputeEngine;
+import dataengine.DataEngineService.DataEngineResponse;
+import dataengine.DataEngineService.EngineStatus;
+import dataengine.DataEngineServiceImpl;
 
-    Coordinator(DataEngine dataEngine, ComputeEngine compute) {
-        this.dataEngine = dataEngine;
-        this.compute = compute;
-    }
+public class Coordinator {
     public void initiateMultiThreaded(List<UserRequest> requests) {
         int numThreads = 4; // Upper bound set to 4 threads
         ExecutorService threadPool = Executors.newFixedThreadPool(numThreads);
@@ -42,17 +40,18 @@ public class Coordinator {
         threadPool.shutdown();
     }
 
-    public void initiate(UserRequest request) throws IOException{
-        try {
-            DataEngine.EngineStatus readStatus = dataEngine.readData(request.getFileInputPath());
-            if (readStatus != DataEngine.EngineStatus.NO_ERROR) {
-                return;
-            }
-            compute.setDelimiter(request.getDelimiter());//set delimiter for factoringIMP
-            int[] numbers = dataEngine.getNumbers();
-            dataEngine.writeData(request.getFileOutputPath(), compute.findFactors(numbers));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public DataEngineResponse initiate(UserRequest request) throws IOException{
+        DataEngineServiceImpl dataEngine = new DataEngineServiceImpl();
+        ComputeEngine computeEngine = new ComputeEngine();
+        DataEngineResponse dataResult;
+
+        dataResult = dataEngine.readData(request.getFileInputPath());
+        if (dataResult.getEngineStatus() != EngineStatus.NO_ERROR) {
+            return dataResult;
         }
+        computeEngine.setDelimiter(request.getDelimiter());//set delimiter for ComputeEngine
+        dataEngine.writeData(request.getFileOutputPath(), computeEngine.findFactors(dataResult.getComputedResultsList()));
+        
+        return dataResult;
     }
 }

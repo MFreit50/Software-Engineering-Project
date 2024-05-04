@@ -1,0 +1,25 @@
+/*
+import "DataEngineService.proto";
+import "UserComputeEngine.proto";
+
+message CoordinatorRequest {
+    repeated UserRequest requests = 1;
+}
+
+message CoordinatorResponse {
+    repeated DataEngineAPI.EngineStatus engine_statuses = 1;
+}
+
+message InitiateRequest {
+    required UserRequest request = 1;
+}
+
+message InitiateResponse {
+    required DataEngineAPI.EngineStatus engine_status = 1;
+}
+
+service Coordinator {
+    rpc InitiateMultiThreaded(CoordinatorRequest) returns (CoordinatorResponse);
+    rpc Initiate(InitiateRequest) returns (InitiateResponse);
+}
+*/

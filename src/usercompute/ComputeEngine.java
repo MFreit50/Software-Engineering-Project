@@ -1,10 +1,11 @@
+package usercompute;
 import java.util.LinkedList;
 import java.util.List;
 public class ComputeEngine implements ComputeEngineAPI{
     private char delimiter;
-    public List<String> findFactors(int [] nums){
+    public List<String> findFactors(List<Integer> numbersToFactor){
         List<String> factors = new LinkedList<>();
-        for(int i : nums) {
+        for(int i : numbersToFactor) {
             factors.add(findFactorsHelper(i));
             factors.add(String.valueOf(delimiter));
         }
