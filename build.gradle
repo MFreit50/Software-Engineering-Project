@@ -54,7 +54,3 @@ protobuf {
         all()*.plugins { grpc {} }
     }
 }
-checkstyle {
-    configFile = file("$rootDir/config/checkstyle.xml")
-    exclude '**/*.xml'
-}
