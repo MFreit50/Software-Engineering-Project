@@ -8,6 +8,7 @@ build
 .classpath
 .project
 .settings
+
 *.iml
 *.ipr
 *.iws
@@ -16,4 +17,13 @@ build
 *.iml
 *.ipr
 *.iws
-
+*.iml
+*.ipr
+*.iws
+*.project
+*.settings
+.idea/misc.xml
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/

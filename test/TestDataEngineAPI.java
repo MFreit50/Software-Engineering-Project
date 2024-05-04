@@ -1,3 +1,7 @@
+import dataengine.DataEngine;
+import dataengine.DataEngineAPI;
+import dataengine.DataResult;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -24,7 +28,7 @@ public class TestDataEngineAPI {
 
         DataEngineAPI dataEngine = new DataEngine();
 
-        DataEngineAPI.EngineStatus status = dataEngine.readData("inputSource");
+        DataEngineAPI.EngineStatus status = dataEngine.readData("inputSource").getEngineStatus();
 
         assertEquals(DataEngineAPI.EngineStatus.FILE_NOT_FOUND, status);
     }
@@ -38,8 +42,8 @@ public class TestDataEngineAPI {
 
         DataEngineAPI dataEngine = new DataEngine();
 
-        DataEngineAPI.EngineStatus status = dataEngine.writeData("outputDestination", testData);
+        DataResult status = dataEngine.writeData("outputDestination", testData);
 
-        assertEquals(DataEngineAPI.EngineStatus.NO_ERROR, status);
+        assertEquals(DataEngineAPI.EngineStatus.NO_ERROR, status.getEngineStatus());
     }
 }
