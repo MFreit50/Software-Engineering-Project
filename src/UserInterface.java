@@ -1,5 +1,17 @@
-import javax.swing.*;
-import java.awt.event.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JCheckBox;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.BoxLayout;
+import javax.swing.JFileChooser;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
