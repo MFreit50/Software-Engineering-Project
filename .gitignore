@@ -8,6 +8,15 @@ build
 .classpath
 .project
 .settings
+
+*.iml
+*.ipr
+*.iws
+*.project
+*.settings
+*.iml
+*.ipr
+*.iws
 *.iml
 *.ipr
 *.iws
